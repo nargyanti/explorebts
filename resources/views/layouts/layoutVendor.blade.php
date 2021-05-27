@@ -5,9 +5,9 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="shortcut icon" href="assets/assets/logo-bts.png" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ asset('assets/img/logo-bts.png') }}" type="image/x-icon">
   
-  <title>ExploreBTS</title>
+  <title>Explore BTS</title>
 
   <!-- Bootstrap core CSS -->
   <link href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">  
@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    @include('layouts.navigation');
+    @include('layouts.navigation')
       <!-- Page Content -->
     <div class="container">
 
@@ -32,8 +32,8 @@
             <div class="col-lg-3">
                 <img src="{{ asset('assets/img/logo-bts.png') }}" width="75%">
                 <div class="list-group">
-                    <a href="#" class="list-group-item">Add Services</a>                    
-                    <a href="#" class="list-group-item">Ordered Services</a>
+                    <a href="{{ route('product.create') }}" class="list-group-item">Add Product</a>                    
+                    <a href="{{ route('product.index') }}" class="list-group-item">Ordered Product</a>
                 </div>
             </div>
             <!-- /.col-lg-3 -->

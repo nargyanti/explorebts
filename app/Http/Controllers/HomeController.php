@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
@@ -25,10 +26,13 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $products = Product::all();
         if ($user->role == "Vendor") {
-            return view('vendor.home', ['user' => $user]);
+            // return view('vendor.home', compact('user', 'product'));
+            return view('vendor.home', ['products' => $products]);
         } else {
-            return view('tourist.home', ['user' => $user]);
+            // return view('tourist.home', compact('user', 'product'));
+            return view('tourist.home', ['products' => $products]);
         }
     }
 }
