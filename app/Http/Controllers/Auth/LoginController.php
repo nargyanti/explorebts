@@ -37,4 +37,18 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function username()
+    {
+        return 'username';
+    }  
+
+    // public function login(Request $request)
+    // {   
+    //     if (auth()->user()->role == 'Vendor') {
+    //         return redirect()->route('vendor.home');
+    //     } else {
+    //         return redirect()->route('tourist.home');
+    //     }                  
+    // }
 }

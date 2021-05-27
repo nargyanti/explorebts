@@ -8,14 +8,14 @@
                 <form action="{{ route('register') }}" method="POST">    
                 <!-- <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data"> -->
                     @csrf     
-                    <!-- <div class="mb-3">
+                    <div class="mb-3">
                         <label for="role" class="form-label">Role</label>
                         <select class="form-select" name="role" required>
                             <option selected disabled hidden>Select Role</option>
                             <option value="Vendor">Vendor</option>
                             <option value="Tourist">Tourist</option>                            
                         </select>
-                    </div>        -->
+                    </div>       
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>                        
                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required>
@@ -64,20 +64,11 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror                         
-                    </div>  
-                    <!-- <div class="mb-3">
-                        <label for="address" class="form-label">Address</label>
-                        <input type="text" class="form-control" name="address" class="form-control @error('address') is-invalid @enderror" value="{{ old('address') }}"  autocomplete="address">  
-                            @error('address')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror                              
-                    </div>                                                         -->
+                    </div>                      
                     <!-- <div class="mb-3">
                         <label for="profile_picture" class="form-label">Profile Picture</label>
                         <input class="form-control" type="file" name="profile_picture">
-                    </div>                             -->
+                    </div> -->
                     <button type="submit" class="btn btn-primary">Submit</button>                    
                 </form>
             </div>    

@@ -158,7 +158,7 @@
                     @enderror
                 <input type="checkbox" onclick="showPassword()">Show Password
                 <button type="submit">Login</button><br>
-                <span class="sign-up text-muted">Don't have an account? <a href="{{ route('sign_up') }}">Sign Up</a></span>
+                <span class="sign-up text-muted">Don't have an account? <a href="{{ route('sign-up') }}">Sign Up</a></span>
             </div>
 
             <div class="container" style="background-color:#f1f1f1">
