@@ -12,8 +12,9 @@
         <!-- Third party plugin CSS-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="assets/css/styles.css" rel="stylesheet" />
-        <link href="assets/css/styleLogin.css" rel="stylesheet" />
+        <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet" />
+        
+        <link href="{{ asset('assets/css/styleLogin.css') }}" rel="stylesheet" />
         <style>
             .navbar{
                 background-color: #f4623a;
@@ -52,7 +53,7 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
-                        <li class="nav-item"><a class="btn btn-light js-scroll-trigger" style="width:auto;" href="{{route('home')}}">Home</a></li>
+                        <li class="nav-item"><a class="btn btn-light js-scroll-trigger" style="width:auto;" href="{{ route('home') }}">Home</a></li>
                     </ul>
                 </div>
             </div>

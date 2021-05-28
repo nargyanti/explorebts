@@ -17,8 +17,8 @@ use App\Http\Controllers\ProductController;
 */
 
 Auth::routes();
-Route::get('/', [HomeController::class, 'index'])->name('index')->middleware('auth');
-Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/landing-page', [PageController::class, 'landingPage'])->name('landing-page');
 Route::get('/sign-up', [PageController::class, 'signUp'])->name('sign-up');
 Route::get('/forgot-password', [PageController::class, 'forgotPassword'])->name('forgot-password');

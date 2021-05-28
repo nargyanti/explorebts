@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\Product;
+use DB;
 
 class HomeController extends Controller
 {
@@ -24,14 +25,20 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        $user = Auth::user();
-        $products = Product::all();
-        if ($user->role == "Vendor") {
-            // return view('vendor.home', compact('user', 'product'));
-            return view('vendor.home', ['products' => $products]);
+    {        
+        $search = request()->query('search');        
+        if($search) {
+            $products = DB::table('products')
+                    ->where('name', "like", "%{$search}%")
+                    ->paginate(6);            
         } else {
-            // return view('tourist.home', compact('user', 'product'));
+            $products = DB::table('products')
+                    ->paginate(6);
+        }        
+        
+        if (Auth::user()->role == "Vendor") {            
+            return view('vendor.home', ['products' => $products]);
+        } else {            
             return view('tourist.home', ['products' => $products]);
         }
     }

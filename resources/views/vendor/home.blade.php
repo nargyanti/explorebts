@@ -8,8 +8,8 @@
 <!-- Kore no Login Session Mo Onegaishimasu ne *bow* -->
     <h1>Welcome, {{ Auth::user()->username }}!</h1>
     <!-- search -->
-    <form action="search.php" method="GET" class="form-inline justify-content-center pt-4">
-        <input class="form-control mr-sm-2 w-50" type="search" placeholder="Search" name="keyword">
+    <form action="{{ route('home') }}" method="GET" class="form-inline justify-content-center pt-4">
+        <input class="form-control mr-sm-2 w-50" type="search" placeholder="Search" name="search">
     <button class="btn my-2 my-sm-0 search-button" type="submit" style="background-color:#f4623a; color:white">Search</button>
     </form>
     
@@ -32,7 +32,7 @@
             <img class="card-img-top" src="{{ asset('storage/'.$product->picture ) }}" alt="{{ $product->name }}">            
             <div class="card-body">
             <h5 class="card-title">{{ $product->name }}</h5>
-            <h5>{{ $product->unit_price }}</h5>
+            <h5>Rp {{ $product->unit_price }}</h5>
             </div>
             <div class="card-footer">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal{{ $product->id }}">Check ></button>
@@ -72,6 +72,9 @@
     </div>    
     <!-- /.modal -->
     @endforeach        
+    <div class="d-flex">
+        {{ $products->links('pagination::bootstrap-4') }}
+    </div>
 </div>
 <!-- /.row -->
 
