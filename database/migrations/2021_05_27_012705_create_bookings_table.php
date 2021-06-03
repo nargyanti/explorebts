@@ -22,7 +22,7 @@ class CreateBookingsTable extends Migration
             $table->integer('quantity');
             $table->date('start_date');
             $table->integer('total_days');
-            $table->enum('status', ['BOOKED', 'DONE', 'CANCELED']);   
+            $table->enum('status', ['BOOKED', 'DONE', 'CANCELED'])->default('BOOKED');   
             $table->integer('total_price');
             $table->timestamps();
         });
