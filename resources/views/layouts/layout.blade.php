@@ -15,16 +15,12 @@
         @endif                
     </head>
     <body>      
-        @if (Route::is('landing-page'))  
-            <div>
-        @else
-            <div class="container pt-5">
-        @endif                
+        <div class="container pt-5">
             @yield('content')                
         </div> 
-        <footer class="bg-dark text-light p-3">
+        <footer class="bg-light py-5">
             <div class="container">
-                <div class="small text-center">Copyright © 2021 - Group 5 Advanced Web Programming TI-2H</div>
+                <div class="small text-center text-muted">Copyright © 2021 - Group 5 Advanced Web Programming TI-2H</div>
             </div>
         </footer>
         <!-- Bootstrap core JS-->
@@ -33,10 +29,8 @@
         <!-- Third party plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
-        <!-- Core theme JS-->        
-        @if (Route::is('landing-page'))  
-            <script src="{{ asset('assets/js/scripts.js') }}"></script>
-        @endif
+        <!-- Core theme JS-->
+        <!-- <script src="assets/js/scripts.js"></script>              -->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
         <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     </body>
