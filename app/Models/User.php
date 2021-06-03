@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Product;
+use App\Models\Booking;
 
 class User extends Authenticatable
 {
@@ -16,6 +18,8 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    protected $table = 'users';
     protected $fillable = [
         'name',
         'username',
@@ -44,4 +48,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function product() 
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function booking() 
+    {
+        return $this->hasMany(Booking::class);
+    }
 }
