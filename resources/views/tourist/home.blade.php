@@ -1,13 +1,12 @@
-@extends('layouts.layoutTourist')
+@extends('layouts.layout')
 
 @section('content')
 
-
+@include('layouts.navigation')
 <div class="col-lg-9">
 @include('layouts.carousel')
 <div class="container">
-<!-- Kore no session mo onegaishimasu -->
-    <h1>Welcome, Username!</h1>
+    <h1>Welcome, {{ Auth::user()->username }}!</h1>
     <!-- search -->
     <form action="search.php" method="GET" class="form-inline justify-content-center pt-4">
         <input class="form-control mr-sm-2 w-50" type="search" placeholder="Search" name="keyword">
