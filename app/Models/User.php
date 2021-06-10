@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Product;
 use App\Models\Booking;
+use App\Models\Transaction;
 
 class User extends Authenticatable
 {
@@ -28,6 +29,7 @@ class User extends Authenticatable
         'phone',
         'role',
         'profile_picture',
+        'balance',
     ];
 
     /**
@@ -54,8 +56,12 @@ class User extends Authenticatable
         return $this->hasMany(Product::class);
     }
 
-    public function booking() 
+    public function product_booking() 
     {
-        return $this->hasMany(Booking::class);
+        return $this->belongsToMany(Product::class, 'booking', 'tourist_id', 'product_id')->withPivot('quantity', 'start_date', 'total_days', 'status', 'total_price', 'created_at', 'update_at');
+    }
+
+    public function transaction() {
+        return $this->hasMany(Transaction::class);
     }
 }
