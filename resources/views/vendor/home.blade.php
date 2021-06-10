@@ -6,20 +6,16 @@
     @include('layouts.sidebar')
     <div class="col-lg-9">
         <div class="container">
+            <h1 class="my-4">Welcome, {{ Auth::user()->username }}!</h1>
             @include('layouts.carousel')  
-            <h1>Welcome, {{ Auth::user()->username }}!</h1>
             <!-- search -->
-            <form action="{{ route('home') }}" method="GET" class="form-inline justify-content-center py-4">
+            <form action="{{ route('home') }}" method="GET" class="form-inline justify-content-center">
                 <input class="form-control mr-sm-2 w-50" type="search" placeholder="Search" name="search">
                 <button class="btn my-2 my-sm-0 search-button" type="submit" style="background-color:#f4623a; color:white">Search</button>
             </form>
             <!-- /.search -->
                          
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success" style="height:50px">
-                    <p>{{ $message }}</p>
-                </div>
-            @endif
+            @include('layouts.alertSuccess')
             <br><h3>Your Services</h3><br>
         </div>
 
@@ -39,9 +35,10 @@
                 </div>
             </div>
             <!-- /.product card -->
-            <!-- modal -->
-            <div id="modal{{ $product->id }}" class="modal fade" role="dialog" >
-                <div class="modal-dialog modal-sm" role="document">
+
+            <!-- product modal -->
+            <div id="modal{{ $product->id }}" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-md" role="document">
                     <div class="modal-content">                        
                         <!-- Modal Header -->
                         <div class="modal-header">
@@ -55,17 +52,41 @@
                         </div>
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <form action="{{ route('product.destroy', $product->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <a href="{{ route('product.update', $product->id) }}"><button type="button" class="btn btn-primary" >Update Item</button></a>
-                                <a href="{{ route('product.destroy', $product->id) }}"><button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')">Delete Item</button></a>                                            
-                            </form>            
+                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#deleteProductConfirmation" data-dismiss="modal">
+                                Delete
+                            </button>                            
+                            <a href="{{ route('product.update', $product->id) }}"><button type="button" class="btn btn-primary">Update</button></a>                                
                         </div>                
                     </div>
                 </div>
             </div>    
-            <!-- /.modal -->
+            <!-- /.product modal -->
+
+            <!-- delete modal -->
+            <div class="modal fade" id="deleteProductConfirmation" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteConfirmationLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure to delete this product?
+                    </div>
+                    <div class="modal-footer">                        
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                        <form action="{{ route('product.destroy', $product->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')                            
+                            <a href="{{ route('product.destroy', $product->id) }}"><button type="submit" class="btn btn-primary">Delete Item</button></a>
+                        </form>                          
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <!-- delete modal -->
             @endforeach        
             <div class="d-flex">
                 {{ $products->links('pagination::bootstrap-4') }}

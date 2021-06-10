@@ -9,7 +9,8 @@
         <!-- Third party plugin CSS-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet" />        
+        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">         -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/styles.css') }}">
         @if (Route::is('landing-page'))  
             <link href="{{ asset('assets/css/styleLogin.css') }}" rel="stylesheet" />
         @endif                
@@ -18,14 +19,12 @@
         @if (Route::is('landing-page'))  
             <div>
         @else
-            <div class="container pt-5">
+            <div class="container">
         @endif                
             @yield('content')                
         </div> 
-        <footer class="bg-dark text-light p-3">
-            <div class="container">
-                <div class="small text-center">Copyright © 2021 - Group 5 Advanced Web Programming TI-2H</div>
-            </div>
+        <footer class="bg-dark text-light p-3">            
+            <div class="small text-center">Copyright © 2021 - Group 5 Advanced Web Programming TI-2H</div>            
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

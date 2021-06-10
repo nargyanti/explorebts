@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-light bg-orange fixed-top py-3" id="mainNav">
     <div class="container">
         <p class="navbar-brand js-scroll-trigger">Explore BTS</p>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
