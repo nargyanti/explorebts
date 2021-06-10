@@ -13,11 +13,11 @@
                 <a class="dropdown-item" href="#">Something else here</a>
             </div>
         </div>
-            <div class=row>
-        @foreach($products as $product)                                
+        <div class="row">
+            @foreach($products as $product)                                
             <!-- product card -->
-            <div class="col mb-4">
-                <div class="card h-100">
+            <div class="col-4 mb-4">
+                <div class="card">
                     <img class="card-img-top" src="{{ asset('storage/'.$product->picture ) }}" alt="{{ $product->name }}">            
                     <div class="card-body">
                         <h5 class="card-title">{{ $product->name }}</h5>
@@ -45,46 +45,20 @@
                             {{ $product->description }}
                         </div>
                         <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#deleteProductConfirmation" data-dismiss="modal">
-                                Delete
-                            </button>                            
-                            <a href="{{ route('product.update', $product->id) }}"><button type="button" class="btn btn-primary">Update</button></a>                                
+                        <div class="modal-footer">                                                       
+                            <form action="{{ route('booking.create', $product->id) }}" method="GET">
+                                @csrf
+                                <button type="submit" class="btn btn-primary" name="product_id">Booking</button>
+                            </form>                            
                         </div>                
                     </div>
                 </div>
             </div>    
-            <!-- /.product modal -->
-
-            <!-- delete modal -->
-            <div class="modal fade" id="deleteProductConfirmation" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteConfirmationLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Are you sure to delete this product?
-                    </div>
-                    <div class="modal-footer">                        
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
-                        <form action="{{ route('product.destroy', $product->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')                            
-                            <a href="{{ route('product.destroy', $product->id) }}"><button type="submit" class="btn btn-primary">Delete Item</button></a>
-                        </form>                          
-                    </div>
-                    </div>
-                </div>
-            </div>
-            <!-- delete modal -->
-            @endforeach        
-            <div class="d-flex">
-                {{ $products->links('pagination::bootstrap-4') }}
-            </div>
+            <!-- /.product modal -->            
+            @endforeach                    
+        </div>
+        <div class="d-flex">
+            {{ $products->links('pagination::bootstrap-4') }}
         </div>
 <!-- /.row -->
 @endsection

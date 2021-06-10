@@ -27,16 +27,32 @@ class HomeController extends Controller
     public function index()
     {        
         $search = request()->query('search');        
+        $products;
         if($search) {
-            $products = DB::table('products')
+            if (Auth::user()->role == "Vendor") {
+                $vendor_id = Auth::user()->id;                
+                $products = DB::table('products')
+                    ->where('name', "like", "%{$search}%")
+                    ->where('vendor_id', $vendor_id)
+                    ->paginate(6);                          
+            } else {
+                $products = DB::table('products')
                     ->where('name', "like", "%{$search}%")
                     ->paginate(6);            
+            }            
         } else {
-            $products = DB::table('products')
-                    ->paginate(6);
+            if (Auth::user()->role == "Vendor") {
+                $vendor_id = Auth::user()->id;                                
+                $products = DB::table('products')
+                    ->where('vendor_id', $vendor_id)
+                    ->paginate(6);                        
+            } else {
+                $products = DB::table('products')
+                ->paginate(6);
+            }
         }        
-        
-        if (Auth::user()->role == "Vendor") {            
+            
+        if (Auth::user()->role == "Vendor") {             
             return view('vendor.home', ['products' => $products]);
         } else {            
             return view('tourist.home', ['products' => $products]);
