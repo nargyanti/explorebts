@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Models\Payment;
 
 class TransactionController extends Controller
 {
@@ -17,7 +18,10 @@ class TransactionController extends Controller
     public function index() {
         $user = Auth::user();   
         $transactions = Transaction::where('user_id', $user->id)->get();     
-        return view('e-wallet.index', ['user' => $user, 'transactions' => $transactions]);
+        $payments = Payment::with('booking.product', 'receiver', 'sender')
+                    ->where('sender_id', $user->id)
+                    ->orWhere('receiver_id', $user->id)->get();
+        return view('e-wallet.index', ['user' => $user, 'transactions' => $transactions, 'payments' => $payments]);
     }
 
     public function topUp() {

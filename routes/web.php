@@ -6,7 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\TransactionController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +38,11 @@ Route::prefix('e-wallet')->group(function() {
 Route::resource('profile', UserController::class);
 Route::resource('product', ProductController::class);
 Route::resource('booking', BookingController::class);
+Route::get('/list', [BookingController::class, 'bookingList'])->name('booking.list');        
+Route::prefix('booking')->group(function() {    
+    Route::get('/create/{product_id}', [BookingController::class, 'create'])->name('booking.create');
+    Route::post('/cancel', [BookingController::class, 'cancel'])->name('booking.cancel');
+    Route::post('/done', [BookingController::class, 'done'])->name('booking.done');
+    Route::post('/payment/store', [PaymentController::class, 'store'])->name('payment.store');    
+    Route::get('/payment/cancel/{booking_id}', [PaymentController::class, 'cancel'])->name('payment.cancel');    
+});

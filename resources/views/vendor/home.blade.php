@@ -1,8 +1,9 @@
 @extends('layouts.app')
-@include('layouts.jumbotron')
 @include('layouts.navigation')
+@include('layouts.jumbotron')
 @section('content')                   
-    <h3 class="text-center py-3">Products</h3>        
+    <h3 class="text-center py-3">Products</h3>   
+    @include('layouts.success');
     <div class="dropdown justify-content-end d-flex">
         <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Dropdown button
