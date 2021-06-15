@@ -5,12 +5,13 @@
         <h3 class="text-center py-3">Products</h3>        
         <div class="dropdown justify-content-end d-flex">
             <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown button
+                Our Services
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="{{ route('list-product', ['id' => 'Jeep']) }}">Jeep</a>
+                <a class="dropdown-item" href="{{ route('list-product', ['id' => 'Inn']) }}">Inn</a>
+                <a class="dropdown-item" href="{{ route('list-product', ['id' => 'Trip']) }}">Trip</a>
+                <a class="dropdown-item" href="{{ route('list-product', ['id' => 'Camping Tools']) }}">Camping Tools</a>
             </div>
         </div>
         <div class="row">

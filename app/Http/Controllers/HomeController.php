@@ -60,4 +60,14 @@ class HomeController extends Controller
             return view('tourist.home', ['products' => $products]);
         }
     }
+
+    public function listView(Request $request, $id)
+    {        
+    
+        $products = DB::table('products')
+            ->where('category', "like", "%{$id}%")
+            ->paginate(6);            
+                  
+        return view('tourist.home', ['products' => $products]);   
+    }
 }
