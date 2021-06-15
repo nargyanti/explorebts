@@ -10,6 +10,15 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ route('index') }}">Home</a>
                 </li>
+                @if(Auth::user()->level = "Vendor")
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('booking.list') }}">My Order</a>
+                    </li>
+                @else
+                    <li class="nav-item active">
+                        <!-- <a class="nav-link" href="{{ route('product.index') }}">My Booking</a> -->
+                    </li>
+                @endif
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ route('e-wallet') }}">E-wallet</a>
                 </li>

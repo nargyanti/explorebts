@@ -38,6 +38,7 @@ class HomeController extends Controller
             } else {
                 $products = DB::table('products')
                     ->where('name', "like", "%{$search}%")
+                    ->where('stock', '>', '0')
                     ->paginate(6);            
             }            
         } else {
@@ -48,6 +49,7 @@ class HomeController extends Controller
                     ->paginate(6);                        
             } else {
                 $products = DB::table('products')
+                ->where('stock', '>', '0')
                 ->paginate(6);
             }
         }        

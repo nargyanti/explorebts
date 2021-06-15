@@ -19,7 +19,7 @@ class ProductSeeder extends Seeder
         [
             [
                 'name' => 'Eiger Replecmen Double Layer',
-                'vendor_id' => '2',
+                'vendor_id' => '1',
                 'category' => 'Camping Tools',
                 'picture' => 'img/products/6aec7c5b-dd39-4b15-ba8a-00b1ee0e7cbf.jpg',
                 'unit_price' => '15000',
@@ -28,7 +28,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Eiger Mummy 250 - B0451 Sleeping Bad',
-                'vendor_id' => '2',
+                'vendor_id' => '1',
                 'category' => 'Camping Tools',
                 'picture' => 'img/products/103148060_df946ffb-f70d-4f6f-8845-dc7461ab6527_590_590.jpg',
                 'unit_price' => '8000',
@@ -37,7 +37,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Consina Jomson New Mountain Boots',
-                'vendor_id' => '3',
+                'vendor_id' => '2',
                 'category' => 'Camping Tools',
                 'picture' => 'img/products/unnamed.jpg',
                 'unit_price' => '25000',
@@ -46,7 +46,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Jeep Bromo Toyota FJ40 For 7 People',
-                'vendor_id' => '6',
+                'vendor_id' => '5',
                 'category' => 'Jeep',
                 'picture' => 'img/products/4155998451.jpg',
                 'unit_price' => '800000',
@@ -55,7 +55,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Jeep Bromo Toyota BJ40 For 5 People',
-                'vendor_id' => '6',
+                'vendor_id' => '5',
                 'category' => 'Jeep',
                 'picture' => 'img/products/213913378.jpg',
                 'unit_price' => '500000',
@@ -64,7 +64,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Jeep Bromo Toyota FJ40 Exclude Driver',
-                'vendor_id' => '3',
+                'vendor_id' => '2',
                 'category' => 'Jeep',
                 'picture' => 'img/products/sewa-jeep-bromo-1.jpeg',
                 'unit_price' => '300000',
@@ -73,7 +73,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Private Trip Bromo For 2 People',
-                'vendor_id' => '4',
+                'vendor_id' => '3',
                 'category' => 'Trip',
                 'picture' => 'img/products/l22234.jfif',
                 'unit_price' => '420000',
@@ -82,7 +82,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Open Trip Bromo For 12 People',
-                'vendor_id' => '4',
+                'vendor_id' => '3',
                 'category' => 'Trip',
                 'picture' => 'img/products/l26330.jfif',
                 'unit_price' => '250000',
@@ -91,7 +91,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Open Trip Semeru For 12-20 People',
-                'vendor_id' => '6',
+                'vendor_id' => '5',
                 'category' => 'Trip',
                 'picture' => 'img/products/Ranu-Kumbolo.jpg',
                 'unit_price' => '650000',
@@ -100,7 +100,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Clover Homestay Standard Room',
-                'vendor_id' => '5',
+                'vendor_id' => '4',
                 'category' => 'Inn',
                 'picture' => 'img/products/152143042.jpg',
                 'unit_price' => '100000',
@@ -109,7 +109,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Clover Homestay Superior Room',
-                'vendor_id' => '5',
+                'vendor_id' => '4',
                 'category' => 'Inn',
                 'picture' => 'img/products/bb703007affc1e68ade676d53fcaef1b.jpg',
                 'unit_price' => '180000',
@@ -118,7 +118,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Clover Homestay Deluxe Room',
-                'vendor_id' => '5',
+                'vendor_id' => '4',
                 'category' => 'Inn',
                 'picture' => 'img/products/unnamed (1).jpg',
                 'unit_price' => '250000',

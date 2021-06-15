@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@include('layouts.jumbotron')
 @include('layouts.navigation')
+@include('layouts.jumbotron')
 @section('content')                   
         <h3 class="text-center py-3">Products</h3>        
         <div class="dropdown justify-content-end d-flex">
@@ -48,7 +48,7 @@
                         <div class="modal-footer">                                                       
                             <form action="{{ route('booking.create', $product->id) }}" method="GET">
                                 @csrf
-                                <button type="submit" class="btn btn-primary" name="product_id">Booking</button>
+                                <button type="submit" class="btn btn-primary">Booking</button>
                             </form>                            
                         </div>                
                     </div>
