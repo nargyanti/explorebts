@@ -14,7 +14,7 @@
                     <a class="nav-link" href="{{ route('e-wallet') }}">E-wallet</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Profile</a>
+                    <a class="nav-link" href="{{ route('profile.index') }}">Profile</a>
                 </li>
                 <li class="nav-item active">                
                     <a class="nav-link" href="{{ route('logout') }}"
