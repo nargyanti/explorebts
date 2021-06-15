@@ -3,13 +3,15 @@
 @section('content')
         <div class="card container">
             <h2 class="mt-5 text-center">Edit Account</h2>
+            @include('layouts.success')
+            @include('layouts.error')
             <div class="card-body">
                 <form method="POST" action="{{ route('profile.update', $user->id)}}" enctype="multipart/form-data"> 
                 @csrf
                 @method('PUT')          
                     <div class="mb-3">
                         <label for="profile-pict" class="form-label">Profile Picture</label>
-                        <input class="form-control" type="file" name="profile_pict" value="{{ $user->profile_picture }}">
+                        <input class="form-control" type="file" name="profile_picture" value="{{ $user->profile_picture }}">
                     </div> 
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>

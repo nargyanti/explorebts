@@ -88,27 +88,25 @@ class UserController extends Controller
             'name' => 'required',
             'username' => 'required',
             'email' => 'required',         
-            'phone' =>'required', 
-            'profile_picture' => 'required',              
+            'phone' =>'required',             
         ]);
 
         $user = User::where('id', $id)->first();
         $user->name = $request->get('name');
         $user->username = $request->get('username');
         $user->phone = $request->get('phone');  
-        $user->email = $request->get('email');  
-        
-        if($user->profile_picture && file_exists(storage_path('storage/'.$user->profile_picture))){
-            Storage::delete('storage/' . $user->profile_picture);
+        $user->email = $request->get('email');              
+
+        if($request->file('profile_picture')) {            
+            if($user->profile_picture && file_exists(storage_path('storage/'.$user->profile_picture))){
+                Storage::delete('storage/' . $user->profile_picture);
+            }
+            $image_name = $request->file('profile_picture')->store('img/profiles', 'public');            
+            $user->profile_picture = $image_name;
         }
-
-        $image_name = $request->file('image')->store('images', 'public');
-        $user->profile_picture = $image_name;
-
-
         $user->save();
         
-        return redirect()->route('profile')
+        return redirect()->route('profile.index')
             ->with('success', 'User Successfully Updated');
     }
 
