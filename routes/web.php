@@ -26,8 +26,11 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/landing-page', [PageController::class, 'landingPage'])->name('landing-page');
 Route::get('/sign-up', [PageController::class, 'signUp'])->name('sign-up');
 Route::get('/forgot-password', [PageController::class, 'forgotPassword'])->name('forgot-password');
+Route::get('/email-confirmation', [PageController::class, 'emailConfirmation'])->name('email_confirmation');
+Route::get('/check_email', [PageController::class, 'getAccountForResetPassword'])->name('check_email');
 Route::get('/reset-password/{id}', [PageController::class, 'resetPassword'])->name('reset_password');
 Route::get('/change-password', [UserController::class, 'changePassword'])->name('change_password');
+Route::get('/print_invoice/{id}', [BookingController::class, 'print_pdf'])->name('print_pdf');
 Route::get('/list-product/{id}', [HomeController::class, 'listView'])->name('list-product');
 Route::prefix('e-wallet')->group(function() {    
     Route::get('/', [TransactionController::class, 'index'])->name('e-wallet');    
@@ -47,3 +50,5 @@ Route::prefix('booking')->group(function() {
     Route::post('/payment/store', [PaymentController::class, 'store'])->name('payment.store');    
     Route::get('/payment/cancel/{booking_id}', [PaymentController::class, 'cancel'])->name('payment.cancel');    
 });
+
+

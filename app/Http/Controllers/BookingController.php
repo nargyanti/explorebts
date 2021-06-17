@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Payment;
 use App\Models\User;
 use Auth;
+use PDF;
 
 class BookingController extends Controller
 {
@@ -152,10 +153,14 @@ class BookingController extends Controller
     }
 
     public function bookingList() {
-        $products = Product::with('user')->where('vendor_id', Auth::user()->id)->get();
-        $bookings = Booking::with('product', 'user')->whereHas('product', function($query){
-            $query->where('vendor_id', Auth::user()->id);  
-        })->get();        
-        return view('vendor.bookingList', ['products' => $products, 'bookings' => $bookings]);
+            $bookings = Booking::with('product', 'user')->where('tourist_id', Auth::user()->id)->get();         
+            return view('tourist.booking.index', ['bookings' => $bookings]);
+        
+    }
+
+    public function print_pdf(Request $request, $id){
+        $booking = Booking::find($id); 
+        $pdf = PDF::loadview('tourist.booking.booking_pdf', ['booking'=>$booking]);
+        return $pdf->stream(); 
     }
 }

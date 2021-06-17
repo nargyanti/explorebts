@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @include('layouts.navigation')
 @include('layouts.jumbotron')
+@include('layouts.success')
 @section('content')                   
     <h3 class="text-center py-3">Products</h3>        
     <div class="dropdown justify-content-end d-flex">
@@ -8,6 +9,7 @@
             Our Services
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="{{ route('list-product', ['id' => 'All']) }}">All Product</a>
             <a class="dropdown-item" href="{{ route('list-product', ['id' => 'Jeep']) }}">Jeep</a>
             <a class="dropdown-item" href="{{ route('list-product', ['id' => 'Inn']) }}">Inn</a>
             <a class="dropdown-item" href="{{ route('list-product', ['id' => 'Trip']) }}">Trip</a>
@@ -43,7 +45,9 @@
                     <!-- Modal body -->
                     <div class="modal-body" style="align-items: center;">
                         <img class="card-img-top" src="{{ asset('storage/'.$product->picture) }}" alt="{{ $product->name }}">
-                        {{ $product->description }}
+                        {{ $product->description }} 
+                        <br><br>
+                        <p>Stock: {{ $product->stock }} </p>
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer">                                                       

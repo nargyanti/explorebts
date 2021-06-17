@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\Booking;
 use App\Models\Product;
+use App\Models\Payment;
+use App\Models\User;
 use DB;
 
 class HomeController extends Controller
@@ -54,20 +57,31 @@ class HomeController extends Controller
             }
         }        
             
-        if (Auth::user()->role == "Vendor") {             
-            return view('vendor.home', ['products' => $products]);
-        } else {            
+        if (Auth::user()->role == "Vendor") {  
+            $products = Product::with('user')->where('vendor_id', Auth::user()->id)->paginate(6);
+            $bookings = Booking::with('product', 'user')->whereHas('product', function($query){
+                $query->where('vendor_id', Auth::user()->id);  
+            })
+            ->get();        
+            return view('vendor.home', ['products' => $products, 'bookings' => $bookings]);  
+        } else {   
+                     
             return view('tourist.home', ['products' => $products]);
         }
     }
 
     public function listView(Request $request, $id)
     {        
-    
-        $products = DB::table('products')
-            ->where('category', "like", "%{$id}%")
-            ->paginate(6);            
-                  
+        if($id == "All"){
+            $products = DB::table('products')
+                ->where('stock', '>', '0')
+                ->paginate(6);
+        } else {
+            $products = DB::table('products')
+                ->where('category', "like", "%{$id}%")
+                ->paginate(6);
+        }
+                       
         return view('tourist.home', ['products' => $products]);   
     }
 }

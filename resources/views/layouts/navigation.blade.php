@@ -10,13 +10,11 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ route('index') }}">Home</a>
                 </li>
-                @if(Auth::user()->level = "Vendor")
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ route('booking.list') }}">My Order</a>
-                    </li>
+                @if(Auth::user()->role == "Vendor")
+                    
                 @else
                     <li class="nav-item active">
-                        <!-- <a class="nav-link" href="{{ route('product.index') }}">My Booking</a> -->
+                        <a class="nav-link" href="{{ route('booking.list') }}">My Booking</a>
                     </li>
                 @endif
                 <li class="nav-item active">
