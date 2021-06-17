@@ -19,6 +19,16 @@ class profileSeeder extends Seeder
         $profile = 
         [
             [
+                'name' => 'User Test',
+                'username' => 'usertest',
+                'email' => 'usertest@gmail.com',
+                'password' => Hash::make('usertest'),
+                'phone' => '085808765670',
+                'role' => 'Vendor',
+                'profile_picture' => 'uploads/profile_pict/user.png',
+                'balance' => 1000000,
+            ],
+            [
                 'name' => 'Kalimati Outdoor',
                 'username' => 'kalimatioutdoor',
                 'email' => 'kalimatioutdoor@gmail.com',
@@ -85,7 +95,7 @@ class profileSeeder extends Seeder
                 'password' => Hash::make('1941720088'),
                 'phone' => '082231814712',
                 'role' => 'Tourist',
-                'profile_picture' => 'uploads/profile_pict/download20200704114634.jpg',
+                'profile_picture' => 'uploads/profile_pict/download20200704114634.png',
                 'balance' => 1000000,
             ],
             [

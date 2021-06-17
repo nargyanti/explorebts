@@ -9,6 +9,6 @@
         <input type="text" name="account_bank" class="form-control" required>
         <label for="amount">Amount</label>
         <input type="number" name="amount" class="form-control" required>
-        <button type="submit" class="btn btn-primary">Top-Up</button>        
+        <button type="submit" class="btn btn-primary">Submit</button>        
     </form>
 @endsection

@@ -20,9 +20,18 @@ class PageController extends Controller
         return view('account.signUp');
     }
 
-    public function forgotPassword()
-    {
-        return view('account.forgotPassword');
+    public function emailConfirmation() {
+        return view('auth.confirmEmail');
+    }
+
+    public function getAccountForResetPassword(Request $request) {
+        $user = User::where('email', $request->get('email'))->first();
+        if ($user->first()) {
+            return view('auth.resetPassword', ['user' => $user]);
+        } else {
+            return redirect()->route('email_confirmation')
+            ->with('failed', 'The Email Is Not Registered');;
+        }
     }
 
     public function resetPassword(Request $request, $id) {
