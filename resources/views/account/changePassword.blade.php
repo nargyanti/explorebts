@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @include('layouts.navigation')
 @section('content')
-    <h1>Change Password</h1>
-    <div class="card container">
+    <h3 class="py-3">Change Password</h3>
+    <div class="card container mb-4">
         <div class="card-body">
             <form action="{{ route('reset_password', $user->id) }}">    
             @csrf            

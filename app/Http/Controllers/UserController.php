@@ -118,7 +118,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::find($id)->delete();
+        return redirect()->route('home')
+            ->with('success', 'Account Successfully Deleted');
     }
 
     public function changePassword() {

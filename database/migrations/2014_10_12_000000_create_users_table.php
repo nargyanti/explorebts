@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->unique();            
             $table->enum('role', ['Vendor', 'Tourist']);
             $table->string('profile_picture')->nullable()->default('public/assets/img/user.png');        
-            $table->integer('balance');          
+            $table->integer('balance')->default(0);          
             $table->rememberToken();
             $table->timestamps();
         });

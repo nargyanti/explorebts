@@ -1,22 +1,9 @@
 @extends('layouts.app')
-
+@include('layouts.navigationCommon')
 @section('content')
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top py-2" id="mainNav" style="background-color: #f4623a">
-    <div class="container">
-        <p class="navbar-brand">Explore BTS</p>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-            data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-            aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto my-2 my-lg-0" style="align-items: center ;">
-                <li class="nav-item"><a class="btn btn-light js-scroll-trigger" style="width:auto;" href="{{ route('home') }}">Home</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<h1 class="mt-5 text-center">Sign Up</h1>
-<div class="card container mb-5">
+<h1 class="text-center py-3">Sign Up</h1>
+<div class="card mb-5">
+@include('layouts.error')
     <div class="card-body">
         <form action="{{ route('register') }}" method="POST">    
         <!-- <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data"> -->
