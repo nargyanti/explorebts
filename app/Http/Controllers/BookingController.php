@@ -148,7 +148,7 @@ class BookingController extends Controller
         $product = Product::find($booking->product_id)->first();
         $product->stock += $booking->quantity;
         $product->save();
-        return redirect()->route('booking.list')
+        return redirect()->route('home')
             ->with('success', 'Booking has been marked as done');
     }
 

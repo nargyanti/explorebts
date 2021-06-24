@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @include('layouts.navigation')
 @section('content') 
-    <h1>Payment Summary</h1>
-    <div class="card container">
+    <h1 class="py-3">Payment Summary</h1>
+    <div class="card container mb-4">
         <div class="card-body">
         <h2>Tourist Information </h2><br>
         <h5>Name : {{ $booking->user->name }}</h5><br>

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @include('layouts.navigation')
 @section('content') 
-    <h1>Booking Page</h1>
-    <div class="card container">
+    <h3 class="py-3">Booking Page</h3>
+    <div class="card container mb-4">
         <div class="card-body">
             @include('layouts.failed')
             <form action="{{ route('booking.store', $product_id) }}" method="POST">                

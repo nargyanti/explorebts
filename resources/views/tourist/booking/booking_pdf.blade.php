@@ -26,6 +26,7 @@
             table tr td,
             table tr th{
                 font-size: 14pt;
+                text-align: center;
             }
 
             p{
