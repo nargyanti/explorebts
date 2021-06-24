@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @include('layouts.navigation')
 @section('content')    
-@include('layouts.success')
-@include('layouts.failed') 
     <div class="card mt-3">
         <div class="card-body text-center">               
             <h2><u>My Balance:</u></h2>    
@@ -13,6 +11,10 @@
     </div>
     <br>
     <h3>History</h3>
+    <div>
+        @include('layouts.success')
+        @include('layouts.failed') 
+    </div>
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-transaction-tab" data-toggle="tab" href="#nav-transaction" role="tab" aria-controls="nav-transaction" aria-selected="true">Transaction</a>
