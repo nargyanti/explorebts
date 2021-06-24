@@ -33,11 +33,11 @@ class HomeController extends Controller
         $products;
         if($search) {
             if (Auth::user()->role == "Vendor") {
-                $vendor_id = Auth::user()->id;                
-                $products = DB::table('products')
-                    ->where('name', "like", "%{$search}%")
-                    ->where('vendor_id', $vendor_id)
-                    ->paginate(6);                          
+                $products = Product::with('user')->where('name', "like", "%{$search}%")->where('vendor_id', Auth::user()->id)->paginate(8);
+                $bookings = Booking::with('product', 'user')->whereHas('product', function($query){
+                    $query->where('vendor_id', Auth::user()->id);  
+                })
+                ->get();                               
             } else {
                 $products = DB::table('products')
                     ->where('name', "like", "%{$search}%")
@@ -46,10 +46,11 @@ class HomeController extends Controller
             }            
         } else {
             if (Auth::user()->role == "Vendor") {
-                $vendor_id = Auth::user()->id;                                
-                $products = DB::table('products')
-                    ->where('vendor_id', $vendor_id)
-                    ->paginate(6);                        
+                $products = Product::with('user')->where('vendor_id', Auth::user()->id)->paginate(8);
+                $bookings = Booking::with('product', 'user')->whereHas('product', function($query){
+                    $query->where('vendor_id', Auth::user()->id);  
+                })
+                ->get();                    
             } else {
                 $products = DB::table('products')
                 ->where('stock', '>', '0')
@@ -58,11 +59,11 @@ class HomeController extends Controller
         }        
             
         if (Auth::user()->role == "Vendor") {  
-            $products = Product::with('user')->where('vendor_id', Auth::user()->id)->paginate(6);
-            $bookings = Booking::with('product', 'user')->whereHas('product', function($query){
-                $query->where('vendor_id', Auth::user()->id);  
-            })
-            ->get();        
+            // $products = Product::with('user')->where('vendor_id', Auth::user()->id)->paginate(6);
+            // $bookings = Booking::with('product', 'user')->whereHas('product', function($query){
+            //     $query->where('vendor_id', Auth::user()->id);  
+            // })
+            // ->get();        
             return view('vendor.home', ['products' => $products, 'bookings' => $bookings]);  
         } else {   
                      
@@ -82,6 +83,6 @@ class HomeController extends Controller
                 ->paginate(6);
         }
                        
-        return view('tourist.home', ['products' => $products]);   
+        return view('tourist.home', ['products' => $products, 'id' => $id]);   
     }
 }

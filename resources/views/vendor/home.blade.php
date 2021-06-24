@@ -1,9 +1,11 @@
 @extends('layouts.app')
+
 @include('layouts.navigation')
 @include('layouts.jumbotron')
-@section('content')                   
-    <h3 class="text-center py-3">Products</h3>   
-    @include('layouts.success')         
+@section('content')
+<h3 class="text-center pt-3">Products</h3>   
+<a href="{{ route('product.create') }}"><button type="button" class="btn btn-primary my-3">Create Product</button></a>        
+@include('layouts.success')         
 <div class="row">   
     @foreach($products as $product)                                
     <!-- product card -->
@@ -20,7 +22,7 @@
         </div>
     </div>
     <!-- /.product card -->
-    
+
     <!-- product modal -->
     <div id="modal{{ $product->id }}" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
@@ -30,17 +32,42 @@
                     <h4 class="modal-title">{{ $product->name }}</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-            
+
                 <!-- Modal body -->
-                <div class="modal-body" style="align-items: center;">
-                    <img class="img-fluid float-left mr-3" style="width: 200px" src="{{ asset('storage/'.$product->picture ) }}"alt="{{ $product->name }}">                    
+                <div class="modal-body" style="align-items: center">
+                    <img class="img-fluid float-left mr-3" style="width: 250px" src="{{ asset('storage/'.$product->picture ) }}"alt="{{ $product->name }}">                    
                     <p>{{ $product->description }}</p>                                        
                     <p>Stock: {{ $product->stock }} </p>
-                    <a href="{{ route('product.update', $product->id) }}"><button type="button" class="btn btn-info">Update</button></a> 
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProductConfirmation" data-dismiss="modal">
-                            Delete
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#deleteProduct{{ $product->id }}">
+                        Delete
                     </button>                            
+                    <a href="{{ route('product.update', $product->id) }}"><button type="button" class="btn btn-primary">Update</button></a>        
+                    <!-- delete modal -->
+                    <div class="modal fade" id="deleteProduct{{ $product->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteConfirmationLabel">Delete Product</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure to delete this product?
+                            </div>
+                            <div class="modal-footer">                        
+                                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                                <form action="{{ route('product.destroy', $product->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')                            
+                                    <a href="{{ route('product.destroy', $product->id) }}"><button type="submit" class="btn btn-primary">Delete Item</button></a>
+                                </form>                          
+                            </div>
+                            </div>
+                        </div>
                     </div>
+                    <!-- delete modal -->   
+                </div>
                 <div class="modal-body">
                     <h5><b>Booking List</b></h5>
                     <table class="table table-striped table-sm text-center table-bordered">
@@ -66,73 +93,70 @@
                                     <td>{{ $booking->status }}</td>
                                     @if($booking->status == "BOOKED")
                                         <td>                                    
-                                            <button class="btn btn-danger" data-toggle="modal" data-target="#cancel{{ $booking->id }}" data-dismiss="modal">Cancel</button>
-                                            <button class="btn btn-success" data-toggle="modal" data-target="#done{{ $booking->id }}" data-dismiss="modal">Done</button>
+                                            <button class="btn btn-danger" data-toggle="modal" data-target="#cancel{{ $booking->id }}">Cancel</button>
+                                            <button class="btn btn-success" data-toggle="modal" data-target="#done{{ $booking->id }}">Done</button>
                                         </td>
                                     @endif
                                 </tr>
+                                <!-- Done Confirmation Modal -->
+                                <div id="done{{ $booking->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Mark As Done</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to mark the booking status as 'DONE'?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+                                            <form action="{{ route('booking.done') }}" method="POST">
+                                                @csrf                
+                                                <input type="hidden" class="form-control" name="booking_id" value="{{ $booking->id }}">
+                                                <button type="submit" class="btn btn-primary">Confirm</button>
+                                            </form>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Cancel Confirmation Modal -->
+                                <div id="cancel{{ $booking->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Mark As Cancel</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to mark the booking status as 'CANCELED'?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+                                            <form action="{{ route('booking.cancel') }}" method="POST">
+                                                @csrf                
+                                                <input type="hidden" class="form-control" name="booking_id" value="{{ $booking->id }}">
+                                                <button type="submit" class="btn btn-primary">Confirm</button>
+                                            </form>  
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>                                     
                             @endif
                         @endforeach
                     </table>    
                 </div>                
             </div>
         </div>
-    </div>
-
-    <!-- Done Confirmation Modal -->
-    <div id="done{{ $booking->id }}" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to mark the booking status as 'DONE'?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
-                <form action="{{ route('booking.done') }}" method="POST">
-                    @csrf                
-                    <input type="hidden" class="form-control" name="booking_id" value="{{ $booking->id }}">
-                    <button type="submit" class="btn btn-primary">Confirm</button>
-                </form>
-            </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Cancel Confirmation Modal -->
-    <div id="cancel{{ $booking->id }}" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to mark the booking status as 'CANCELED'?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
-                <form action="{{ route('booking.cancel') }}" method="POST">
-                    @csrf                
-                    <input type="hidden" class="form-control" name="booking_id" value="{{ $booking->id }}">
-                    <button type="submit" class="btn btn-primary">Confirm</button>
-                </form>  
-            </div>
-            </div>
-        </div>
-    </div>
-
+    </div>    
     @endforeach             
 </div>
-
-    <div class="d-flex">
-        {{ $products->links('pagination::bootstrap-4') }}
-    </div>
-@endsection
+<div class="d-flex">
+    {{ $products->links('pagination::bootstrap-4') }}
+</div>
+@endsection 

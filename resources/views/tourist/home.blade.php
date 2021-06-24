@@ -1,10 +1,12 @@
 @extends('layouts.app')
 @include('layouts.navigation')
 @include('layouts.jumbotron')
-@include('layouts.success')
 @section('content')                   
     <h3 class="text-center py-3">Products</h3>        
-    <div class="dropdown justify-content-end d-flex">
+    <div>
+        @include('layouts.success')
+    </div>
+    <div class="dropdown justify-content-end d-flex mb-3">
         <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Our Services
         </button>
@@ -44,7 +46,10 @@
                     </div>
                     <!-- Modal body -->
                     <div class="modal-body" style="align-items: center;">
-                        <img class="card-img-top" src="{{ asset('storage/'.$product->picture) }}" alt="{{ $product->name }}">
+                        <div class="text-center">                        
+                            <img src="{{ asset('storage/'.$product->picture) }}" alt="{{ $product->name }}" style="width:300px">                        
+                        </div>
+                        <br>
                         {{ $product->description }} 
                         <br><br>
                         <p>Stock: {{ $product->stock }} </p>
